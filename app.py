@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from models.image_gen import generate_image
 from models.text_gen import generate_text
@@ -27,4 +28,5 @@ def tts():
     return jsonify({"audio_url": audio_url})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))  # Get PORT from environment variables
+    app.run(host="0.0.0.0", port=port)
